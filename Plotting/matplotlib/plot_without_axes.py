@@ -24,7 +24,9 @@ for i in range(3):
 
 plt.legend(loc='lower right')
 
-# Draw the x axis
+# Draw the x axis line
+# Note that this must be done after plotting, to get the correct
+# view interval
 xmin, xmax = ax1.get_xaxis().get_view_interval()
 ymin, ymax = ax1.get_yaxis().get_view_interval()
 ax1.add_artist(Line2D((xmin, xmax), (ymin, ymin), color='black', linewidth=2))
