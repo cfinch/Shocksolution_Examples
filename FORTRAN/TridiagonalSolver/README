@@ -1,0 +1,7 @@
+To build a library that can be imported into Python, type:
+$ make
+$ python test_tridiag.py
+
+To build the Fortran library and the Fortran test program:
+$ make test_tridiag
+$ ./test_tridiag
