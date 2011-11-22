@@ -2,24 +2,35 @@
 !     V1.0 6 AUG 03
 PROGRAM MAIN
     IMPLICIT NONE
-    CHARACTER exe*256
-    CHARACTER temp*256
-    INTEGER lastChar
+    CHARACTER str*256
     external setIniFilename, getValue
-    logical error
+    logical error, simulate
+    real pi
 
     call setIniFilename('test.ini')
-    call getValue('constants', 'pi', temp, error)
+
+    call getValue('constants', 'pi', str, error)
     if (error .eqv. .false.) then
-        write(*,*) 'temp = ', temp
+        write(*,'(a,a)') 'str = ', trim(str)
+        read(str, '(f7.5)') pi
+        write(*,'(a,f7.5)') 'pi = ', pi
     endif
-    call getValue('setup', 'simulate', temp, error)
+
+    call getValue('setup', 'simulate', str, error)
     if (error .eqv. .false.) then
-        write(*,*) 'simulate = ', temp
+        write(*,'(a,a)') 'str = ', trim(str)
+        read(str, '(L7)') simulate
+        write(*,'(a,L1)') 'simulate = ', simulate
+
     endif
-    call getValue('doesnotexist', 'dummy', temp, error)
+
+    ! Test error handling.  This SHOULD print the error message.
+    call getValue('doesnotexist', 'dummy', str, error)
     if (error .eqv. .false.) then
-        write(*,*) 'dummy = ', temp
+        write(*,'(a,a)') 'dummy = ', trim(str)
+    else
+        write(*,'(a)') 'Error: section or keyword not found'
     endif
+
 end program
 

@@ -95,7 +95,7 @@ SUBROUTINE getValue(section, kwd, value, error)
                 foundSection = .true.
             endif
         else
-            if (foundSection .EQV. .TRUE.) then
+            if ((foundSection .EQV. .TRUE.) .AND. (lines(i)(1:1) .NE. ';')) then
                 startval = index(lines(i), kwd, .true.)
                 if (startval > 0) then
                     startval = index(lines(i), '=')
