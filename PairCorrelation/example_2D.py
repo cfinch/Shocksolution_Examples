@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from utilities import *
-from paircorrelation import PairCorrelationFunction_2D
+from paircorrelation import pairCorrelationFunction_2D
 
 # Particle setup
 domain_size = 20.0
@@ -17,8 +17,7 @@ x = np.random.uniform(low=0, high=domain_size, size=num_particles)
 y = np.random.uniform(low=0, high=domain_size, size=num_particles)
 
 # Compute pair correlation
-g_r, r, reference_indices = PairCorrelationFunction_2D(x, y, domain_size,
-        rMax, dr)
+g_r, r, reference_indices = pairCorrelationFunction_2D(x, y, domain_size, rMax, dr)
 
 # Visualize
 plt.figure()
@@ -38,7 +37,7 @@ rMax = domain_size / 3
 x, y, domain_width, domain_height = generate_hex_circle_packing(particle_radius, domain_size)
 
 # Compute pair correlation
-g_r, r, reference_indices = PairCorrelationFunction_2D(x, y, domain_size,
+g_r, r, reference_indices = pairCorrelationFunction_2D(x, y, domain_size,
         rMax, dr)
 
 # Visualize
